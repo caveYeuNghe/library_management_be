@@ -1,0 +1,19 @@
+{
+  "name": "library-management",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "set DEBUG=library-management:* & nodemon ./bin/www"
+  },
+  "dependencies": {
+    "debug": "^4.3.4",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "http-errors": "~1.6.3",
+    "mongoose": "^6.8.1",
+    "morgan": "~1.9.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
