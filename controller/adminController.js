@@ -3,10 +3,26 @@ const mongoose = require('mongoose');
 
 module.exports = {
     login: async (req, res) => {
-        console.log(req.body)
+        try {
+            const admin = await Admin.findByCredentials(req.body.username, req.body.password)
+            const token = await admin.generateAuthToken()
+            res.status(200).send({admin, token})
+        } catch(e) {
+            res.status(400).send(e)
+        }
     },
-    logout: async (reg, res) => {
+    logout: async (req, res) => {
+        try {
+            req.user.tokens = req.user.tokens.filter((token) => {
+                return token.token !== req.token
+            })
+            await req.user.save()
 
+            res.status(200).send("log out successfully")
+
+        } catch (e) {
+            res.status(500).send()
+        }
     },
     signup: async (req, res) => {
         try {
